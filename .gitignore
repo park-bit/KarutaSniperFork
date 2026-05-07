@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Environment / Config
+config.json
+.env
+
+# Logs
+log.txt
+*.log
+
+# Project specific
+tesseract/
+keywords/animes.txt
+keywords/characters.txt
+keywords/aniblacklist.txt
+keywords/charblacklist.txt
+
+# OS
+.DS_Store
+Thumbs.db

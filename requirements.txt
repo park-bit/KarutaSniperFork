@@ -1,7 +1,7 @@
 Levenshtein
 pillow
 pytesseract
-requests
+aiohttp
 colorama
 opencv-python
 git+https://github.com/dolfies/discord.py-self.git
