@@ -1,48 +1,50 @@
-# KarutaSniper (Optimized v2.4.0)
+# KarutaSniper (v2.4.0)
 
-A refined, high-performance automation tool for Karuta and Tofu. This fork focuses on fixing long-standing bugs in the original repository and maximizing speed and accuracy.
-
----
-
-## ⚡ Improvements over Original
-
-This version addresses several "Known Issues" and "TODOs" from the original repo:
-
-### 🧠 Fixed OCR & Print Accuracy
-- **Original Issue**: "print numbers and autofarm might be buggy" / "ocr can misread names."
-- **Our Fix**: Implemented **4x Image Scaling**, **Gaussian Blurring**, and **Adaptive Gaussian Thresholding**. This eliminates background noise and textures, making print numbers and character names pinpoint accurate across all card editions.
-- **PSM 7 Optimization**: Switched to single-line detection for stats, drastically reducing false hits.
-
-### 🚀 Speed & Performance
-- **Parallel Processing**: Unlike the original, this version uses a **16-worker Thread Pool**. It scans top, bottom, and print segments of all cards simultaneously.
-- **10ms Hyper-Polling**: Buttons are checked 100x per second, ensuring the fastest possible click the moment they enable.
-- **First-Hit Logic**: Optimized to click as soon as the first target is identified in competitive drops.
-
-### 🤖 Reliable Automation
-- **New Autofarm**: Completely overhauled the worker-bot logic. It now supports the latest worker bot (`@1271850048707231744`) with exact message mirroring.
-- **Tofu Support**: Stable, unified success handling for both Karuta and Tofu drops.
-- **Priority Scoring**: On your own drops, the bot intelligently compares all cards and picks the best one (Whitelist > Lowest Print) instead of just grabbing the first one.
-
-### 🛡️ Stealth & Stability
-- **Activity Redirection**: Offloads clutter commands (`kv`, `kcd`, `kt`) to secondary channels to stay under the radar.
-- **Humanized Jitter**: Randomized delays and micro-typing simulation to look natural while staying fast.
-- **Permission Guard**: Added checks for channel permissions to prevent `403 Forbidden` crashes.
-- **Self-Healing Sync**: A robust cooldown parser that handles all time formats and verifies replies to prevent timer hijacking.
+A modified version of KarutaSniper focused on fixing core bugs and improving overall throughput.
 
 ---
 
-## Configuration
+## Technical Improvements
 
-Settings are managed in `config.json`. Use `config_example.json` as a template.
+### Vision & OCR
+- 4x image scaling for better print detection.
+- Adaptive Gaussian thresholding to handle varied card lighting and backgrounds.
+- PSM 7 single-line detection for stats.
 
-| Setting | Description |
-| :--- | :--- |
-| `grab_delay_min/max` | Reaction jitter for foreign drops. |
-| `grab_delay_own` | Delay for your own drops (0.0 recommended). |
-| `accuracy` | Fuzzy matching sensitivity (0.815 default). |
-| `autodropchannel` | Designated channels for scheduled drops. |
+### Performance
+- Multithreaded execution using a 16-worker thread pool.
+- 10ms polling for button states.
+- Parallel processing for all card segments.
+
+### Logic
+- Scoring-based priority for personal drops (Whitelist > Lowest Print).
+- Emergency fallback grab for processing errors on own drops.
+- Self-healing cooldown parser with reply verification.
+
+### Stealth
+- Activity command redirection to secondary channels.
+- Micro-typing status before automated commands.
+- Channel permission verification to prevent 403 errors.
+
+---
+
+## Autofarm Instructions
+
+The autofarm module now requires a specific worker bot to handle command mirroring. 
+
+1. Invite the worker bot to your farm server: [Worker Bot (Top.gg)](https://top.gg/bot/1271850048707231744)
+2. Ensure the bot has permissions to view the channel and send messages.
+3. Configure the `resourcechannel` in `config.json`.
+
+---
+
+## Setup
+
+1. Rename `config_example.json` to `config.json`.
+2. Fill in your token and channel IDs.
+3. Add targets to the `keywords/` text files.
 
 ---
 
 ## Disclaimer
-Self-bots violate Discord TOS. This fork is for research purposes only. Use at your own risk.
+Self-bots violate Discord TOS. This project is for research purposes only. Use at your own risk.
