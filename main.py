@@ -13,12 +13,14 @@ import discord
 import pytesseract
 from colorama import Fore, init
 
-# ── Portable Tesseract OCR ──────────────────────────────────────────────────
-# Points to the bundled tesseract.exe inside the project folder so no system
-# installation is required.
+# ── Cross-Platform Tesseract Setup ──────────────────────────────────────────
 _TESS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tesseract")
-pytesseract.pytesseract.tesseract_cmd = os.path.join(_TESS_DIR, "tesseract.exe")
-os.environ["TESSDATA_PREFIX"] = _TESS_DIR  # tessdata/ must live inside here
+if os.name == "nt": # Windows
+    pytesseract.pytesseract.tesseract_cmd = os.path.join(_TESS_DIR, "tesseract.exe")
+    os.environ["TESSDATA_PREFIX"] = _TESS_DIR
+else: # Linux / Android (Termux) / VPS
+    # On Linux, pytesseract looks for 'tesseract' in the system PATH automatically
+    pass
 # ───────────────────────────────────────────────────────────────────────────
 
 from lib import api

@@ -38,6 +38,20 @@ The autofarm module now requires a specific worker bot to handle command mirrori
 
 ---
 
+## Android (Termux) Setup
+
+1. Install [Termux](https://f-droid.org/en/packages/com.termux/) (F-Droid version).
+2. Run these commands:
+   ```bash
+   pkg update && pkg upgrade
+   pkg install python tesseract opencv libjpeg-turbo
+   pip install discord.py-self pytesseract opencv-python colorama aiohttp
+   ```
+3. Copy this project folder to your phone.
+4. Run `python main.py`.
+
+---
+
 ## Setup
 
 1. Rename `config_example.json` to `config.json`.
